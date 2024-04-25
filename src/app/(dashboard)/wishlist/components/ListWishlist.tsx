@@ -29,7 +29,7 @@ export function ListWishlist() {
   return (
     <div className="h-screen">
       <h1 className="text-center font-bold text-4xl">WISHLIST</h1>
-      <div className="flex flex-row mt-5">
+      <div className="flex flex-row justify-between mt-5">
         {productWishlist?.map((el, i) => {
           return <CardWishlist key={i} wishlist={el} fetchWishlist={fetchWishlist} productWishlist={productWishlist} />;
         })}

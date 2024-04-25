@@ -66,7 +66,7 @@ export default function Products() {
     <>
       <form onSubmit={searchProducts}>
         <div className="flex gap-2 mb-2 px-5 align-middle">
-          <input type="text" placeholder="Search" className="px-2 h-12 flex-1 rounded-lg" name="search" id="search" />
+          <input type="text" placeholder="Search" className="px-2 h-12 flex-1 rounded-lg text-white" name="search" id="search" />
           <button type="submit" className="btn btn-active flex-4">
             SEARCH
           </button>
