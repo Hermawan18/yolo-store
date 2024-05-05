@@ -19,8 +19,12 @@ export default function Navbar() {
         {/* nav left */}
         <div className="flex gap-3 pe-3">
           <Logo />
-          <Link className="btn bg-white text-black font-bold hover:bg-gray-400 border-black" href={'/products'}>
+          <Link className="btn bg-white text-lg text-black font-bold hover:bg-gray-400 border-none" href={'/products'}>
             PRODUCTS
+          </Link>
+
+          <Link className="btn bg-white text-lg text-black font-bold hover:bg-gray-400 border-none" href={'/wishlist'}>
+            WISHLIST
           </Link>
         </div>
 
