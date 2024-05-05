@@ -3,14 +3,14 @@ import { FetchDataType, Product, Wishlist } from '@/types';
 import { useRouter } from 'next/navigation';
 import { GrLinkNext } from 'react-icons/gr';
 import { MdAddShoppingCart } from 'react-icons/md';
+import Image from 'next/image';
 
 export default function CardProduct({ product }: { product: Product }) {
   const navigation = useRouter();
   const id = product._id.toString();
-  console.log(id, '<<<<< dari card product id');
 
   const handleAddWishlist = async (product: Product) => {
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/wishlist', {
+    const response = await fetch('http://localhost:3000/api/wishlist', {
       method: 'POST',
       cache: 'no-store',
       headers: {
@@ -29,9 +29,9 @@ export default function CardProduct({ product }: { product: Product }) {
 
   return (
     <>
-      <div className="bg-base-100 shadow-xl flex w-full my-4">
+      <div className="bg-base-100 shadow-xl flex w-full my-4 overflow-y-hidden" style={{ height: '400px' }}>
         <figure className="flex-1">
-          <img src={product?.thumbnail} alt="Shoes" className="w-full" />
+          <Image src={product?.thumbnail} alt="Shoes" width={800} height={300} priority />
         </figure>
         <div className="card-body bg-white flex-1">
           <h2 className="card-title text-5xl font-bold mb-5">{product?.name}</h2>
