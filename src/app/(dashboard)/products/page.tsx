@@ -10,6 +10,7 @@ export default function Products() {
   const [items, setItems] = useState<Product[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
+  const [limitPage, setLimitPage] = useState<number>(0);
 
   // get result search
   const searchProducts = async (e: React.BaseSyntheticEvent) => {
@@ -17,7 +18,7 @@ export default function Products() {
 
     const formData = new FormData(e.currentTarget);
     const search = formData.get('search');
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/products', {
+    const response = await fetch('http://localhost:3000/api/products', {
       method: 'POST',
       headers: {
         cookie: document.cookie,
@@ -34,8 +35,18 @@ export default function Products() {
   };
 
   // result pagination
+  interface Pagination {
+    totalPage: number;
+    data: Product[];
+  }
+
+  interface FetchPagination {
+    statusCode: number;
+    message: string;
+    data: Pagination;
+  }
   const resultPagination = async () => {
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + `/api/products/pagination`, {
+    const response = await fetch(`http://localhost:3000/api/products/pagination`, {
       method: 'POST',
       headers: {
         cookie: document.cookie,
@@ -43,19 +54,25 @@ export default function Products() {
       body: JSON.stringify({ page }),
     });
 
-    const responseBody: FetchDataType = await response.json();
+    const responseBody: FetchPagination = await response.json();
 
     if (!response.ok) {
       throw new Error('fetch error');
     }
 
-    setItems([...items, ...responseBody?.data]);
+    setLimitPage(responseBody?.data?.totalPage);
+    setItems([...items, ...responseBody?.data?.data]);
     setHasMore(true);
+
     return responseBody;
   };
 
   function handleMore() {
-    setPage((prevPage) => prevPage + 1);
+    if (page === limitPage) {
+      setHasMore(false);
+    } else {
+      setPage((prevPage) => prevPage + 1);
+    }
   }
 
   useEffect(() => {
@@ -66,8 +83,8 @@ export default function Products() {
     <>
       <form onSubmit={searchProducts}>
         <div className="flex gap-2 mb-2 px-5 align-middle">
-          <input type="text" placeholder="Search" className="px-2 h-12 flex-1 rounded-lg text-white" name="search" id="search" />
-          <button type="submit" className="btn btn-active flex-4">
+          <input type="text" placeholder="Search" className="px-5 h-12 flex-1 rounded-lg bg-slate-100 border border-black" name="search" id="search" />
+          <button type="submit" className="btn btn-active flex-4 bg-slate-700 border border-none text-white">
             SEARCH
           </button>
         </div>
@@ -78,10 +95,13 @@ export default function Products() {
         next={handleMore}
         hasMore={hasMore}
         loader={
-          <div className="text-center h-full">
-            <span className="loading loading-dots loading-lg text-red-600"></span>
-          </div>
+          page !== limitPage ? (
+            <div className="text-center h-full">
+              <span className="loading loading-dots loading-lg text-red-600"></span>
+            </div>
+          ) : null
         }
+        endMessage={<div></div>}
       >
         <div className="flex flex-col">
           {items?.map((el) => {
