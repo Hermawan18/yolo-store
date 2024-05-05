@@ -16,7 +16,7 @@ export default function FormLogin() {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/users/login', {
+    const response = await fetch('http://localhost:3000/api/users/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
@@ -25,7 +25,6 @@ export default function FormLogin() {
     });
 
     const responseBody: FetchDataType | ErrorLoginType = await response.json();
-    console.log(response, '????????');
 
     if (!response.ok) {
       const message = responseBody?.message;
@@ -44,16 +43,16 @@ export default function FormLogin() {
           <label htmlFor="email">
             ALAMAT EMAIL <span className="text-red-600">*</span>
           </label>
-          <input type="text" placeholder="Masukkan alamat email Anda" className="px-2 h-10 text-white" name="email" id="email" />
+          <input type="text" placeholder="Masukkan alamat email Anda" className="px-2 h-10 rounded-md" name="email" id="email" />
         </div>
         <div className="flex flex-col gap-2 mb-2">
           <label htmlFor="password">
             KATA SANDI <span className="text-red-600">*</span>
           </label>
-          <input type="password" className="px-2 h-10 text-white" name="password" id="password" />
+          <input type="password" placeholder="Masukkan password Anda" className="px-2 h-10 rounded-md" name="password" id="password" />
         </div>
         <p className="text-red-600">{error}</p>
-        <button type="submit" className="btn btn-active w-1/2 mt-2">
+        <button type="submit" className="btn btn-active text-white hover:bg-black/70 w-1/2 mt-2">
           MASUK
         </button>
       </form>
