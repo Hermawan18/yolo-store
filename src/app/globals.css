@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
+:root {
+  background-color: white;
+  color: black;
 }
 
-body {
+input {
+  background-color: white;
+}
+
+/* body {
   margin: 0 144px;
   color: black;
   background-color: white!;
-}
+} */
