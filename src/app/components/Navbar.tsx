@@ -20,24 +20,24 @@ export default function Navbar() {
         <div className="flex gap-3 pe-3">
           <Logo />
           <Link className="btn bg-white text-lg text-black font-bold hover:bg-gray-400 border-none" href={'/products'}>
-            PRODUCTS
+            PRODUK
           </Link>
 
           <Link className="btn bg-white text-lg text-black font-bold hover:bg-gray-400 border-none" href={'/wishlist'}>
-            WISHLIST
+            KERANJANG
           </Link>
         </div>
 
         {/* nav right */}
         <div className="flex gap-3">
-          <Link className="btn bg-white text-black font-bold hover:bg-gray-400 border-black" href={'/wishlist'}>
+          {/* <Link className="btn bg-white text-black font-bold hover:bg-gray-400 border-black" href={'/wishlist'}>
             <FaCartShopping />
-          </Link>
+          </Link> */}
 
           {token ? (
             <form action={handleLogout}>
               <button className="btn bg-white border-red-700 text-red-700 font-bold hover:bg-red-700 hover:border-red-700 hover:text-white" type="submit">
-                LOGOUT
+                KELUAR
               </button>
             </form>
           ) : null}

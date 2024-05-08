@@ -1,6 +1,6 @@
 'use client';
 import Banner from '@/app/(dashboard)/components/Banner';
-import { FetchDataType, FetchDataProducts, Product } from '@/types';
+import { FetchDataProducts, Product, FetchDataTypeWishlist } from '@/types';
 import { useEffect, useState } from 'react';
 import { CardHome } from './components/CardHome';
 
@@ -19,13 +19,13 @@ export default function Home() {
     });
 
     const responseBody: FetchDataProducts = await response.json();
-    console.log(responseBody);
 
     if (!response.ok) {
-      throw new Error('fetch error');
+      return null;
+    } else {
+      setItems([...items, ...responseBody?.data?.data]);
+      return responseBody;
     }
-    setItems([...items, ...responseBody?.data?.data]);
-    return responseBody;
   };
 
   useEffect(() => {

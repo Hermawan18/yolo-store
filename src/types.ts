@@ -48,6 +48,12 @@ export interface FetchDataProducts {
   data: Pagination;
 }
 
+export interface FetchDataProduct {
+  statusCode: number;
+  message: string;
+  data: Product;
+}
+
 export interface FetchDataTypeWishlist {
   statusCode: number;
   message: string;

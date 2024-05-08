@@ -22,9 +22,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const response = await request.json();
-  console.log(response, '<<<< dari search product');
   const resultSearch = await getSearchProduct(response.search);
-  console.log(resultSearch, '<<<< hasil dari search');
   return Response.json(
     {
       statusCode: 200,

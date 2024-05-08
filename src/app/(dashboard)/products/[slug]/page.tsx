@@ -1,9 +1,26 @@
-import { getProductById } from '@/db/models/product';
+'use client';
 import { AddWishlist } from './components/AddWishlist';
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { FetchDataProduct, Product } from '@/types';
 
-export default async function DetailProduct({ params }: { params: { slug: string } }) {
-  const product = await getProductById(params.slug);
+export default function DetailProduct({ params: { slug } }: { params: { slug: string } }) {
+  const [product, setProduct] = useState<Product>({});
+
+  async function getProductById() {
+    const response = await fetch('http://localhost:3000/api/products/' + slug, {
+      method: 'GET',
+      headers: {
+        cookie: document.cookie,
+      },
+      cache: 'no-store',
+    });
+
+    const responseBody: FetchDataProduct = await response.json();
+
+    setProduct(responseBody?.data);
+  }
 
   const formatRupiah = new Intl.NumberFormat('id-ID', {
     style: 'currency',
@@ -15,18 +32,22 @@ export default async function DetailProduct({ params }: { params: { slug: string
     description: product.description,
   };
 
+  useEffect(() => {
+    getProductById();
+  }, []);
+
   return (
     <>
       <div className="h-screen px-3 mt-10 ">
         <div className=" flex">
           <figure className="" style={{ width: '800px' }}>
-            <img src={product.thumbnail} alt="Shoes" />
+            <Image src={product?.thumbnail} alt="Shoes" width={800} height={800} priority />
           </figure>
           <div className="w-56 flex flex-col ms-2">
             {product?.images?.map((el, i) => {
               return (
                 <figure key={i} className="w-full">
-                  <img src={el} alt="Shoes" />
+                  <Image src={el} alt="Shoes" width={200} height={200} priority />
                 </figure>
               );
             })}
@@ -39,7 +60,7 @@ export default async function DetailProduct({ params }: { params: { slug: string
             <p className="text-lg text-slate-600">{product.description}</p>
             <br />
             <p className="text-md text-slate-600 italic">{product.excerpt}</p>
-            <AddWishlist product={product}>ADD WISHLIST</AddWishlist>
+            <AddWishlist product={product}>TAMBAH KRANJANG</AddWishlist>
           </div>
         </div>
       </div>

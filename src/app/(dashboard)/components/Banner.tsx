@@ -11,7 +11,7 @@ export default function Banner() {
     <>
       <div className="carousel w-full">
         <div id="slide1" className="carousel-item relative w-full">
-          <Image src={bannerImg[0]} width={1800} height={500} alt="banner1" />
+          <Image src={bannerImg[0]} width={1800} height={500} alt="banner1" priority />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide4" className="btn btn-circle">
               ❮
@@ -22,7 +22,7 @@ export default function Banner() {
           </div>
         </div>
         <div id="slide2" className="carousel-item relative w-full">
-          <Image src={bannerImg[1]} width={1800} height={500} alt="banner2" />
+          <Image src={bannerImg[1]} width={1800} height={500} alt="banner2" priority />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide1" className="btn btn-circle">
               ❮
@@ -33,7 +33,7 @@ export default function Banner() {
           </div>
         </div>
         <div id="slide3" className="carousel-item relative w-full">
-          <Image src={bannerImg[2]} width={1800} height={500} alt="banner3" />
+          <Image src={bannerImg[2]} width={1800} height={500} alt="banner3" priority />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide2" className="btn btn-circle">
               ❮
@@ -44,7 +44,7 @@ export default function Banner() {
           </div>
         </div>
         <div id="slide4" className="carousel-item relative w-full">
-          <Image src={bannerImg[3]} width={1800} height={500} alt="banner4" />
+          <Image src={bannerImg[3]} width={1800} height={500} alt="banner4" priority />
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide3" className="btn btn-circle">
               ❮
