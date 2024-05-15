@@ -7,12 +7,12 @@ export async function getProducts() {
   let page = 1;
   let pageSize = 6;
 
-  const products = (await db
+  const products = await db
     .collection('products')
     .find()
     .skip((page - 1) * pageSize)
     .limit(pageSize)
-    .toArray()) as Product[];
+    .toArray();
   return products;
 }
 
@@ -22,14 +22,14 @@ export async function getProductsPagination(page: number) {
   // let page = 1;
   let pageSize = 6;
 
-  const products = (await db
+  const products = await db
     .collection('products')
     .find()
     .skip((page - 1) * pageSize)
     .limit(pageSize)
-    .toArray()) as Product[];
+    .toArray();
 
-  const totalProducts = (await db.collection('products').countDocuments()) as number;
+  const totalProducts = await db.collection('products').countDocuments();
   const totalPage = Math.ceil(totalProducts / pageSize);
 
   return {
@@ -43,7 +43,7 @@ export async function getSearchProduct(search: string) {
   const db = await getDb();
   const regex = new RegExp(search, 'i');
 
-  const resultProduct = (await db.collection('products').find({ name: regex }).toArray()) as Product[];
+  const resultProduct = await db.collection('products').find({ name: regex }).toArray();
   return resultProduct;
 }
 
@@ -51,6 +51,6 @@ export async function getSearchProduct(search: string) {
 export async function getProductById(slug: string) {
   const db = await getDb();
 
-  const product = (await db.collection('products').findOne({ slug })) as Product;
+  const product = await db.collection('products').findOne({ slug });
   return product;
 }

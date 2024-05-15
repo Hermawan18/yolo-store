@@ -9,7 +9,7 @@ export interface User {
 }
 
 export interface Product {
-  _id: ObjectId;
+  _id: string;
   name: string;
   slug: string;
   description: string;

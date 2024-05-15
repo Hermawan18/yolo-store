@@ -8,7 +8,7 @@ import { ObjectId } from 'mongodb';
 
 export default function DetailProduct({ params: { slug } }: { params: { slug: string } }) {
   const [product, setProduct] = useState<Product>({
-    _id: new ObjectId(),
+    _id: '',
     name: '',
     slug: '',
     description: '',
