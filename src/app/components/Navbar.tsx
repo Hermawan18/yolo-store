@@ -26,9 +26,9 @@ export default function Navbar() {
 
         {/* nav right */}
         <div className="flex gap-3">
-          <Link className="btn bg-white text-black font-bold hover:bg-gray-400 border-black" href={'/wishlist'}>
+          {/* <Link className="btn bg-white text-black font-bold hover:bg-gray-400 border-black" href={'/wishlist'}>
             <FaCartShopping />
-          </Link>
+          </Link> */}
 
           {token ? (
             <form action={handleLogout}>
