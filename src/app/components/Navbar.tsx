@@ -19,8 +19,12 @@ export default function Navbar() {
         {/* nav left */}
         <div className="flex gap-3 pe-3">
           <Logo />
-          <Link className="btn bg-white text-black font-bold hover:bg-gray-400 border-black" href={'/products'}>
-            PRODUCTS
+          <Link className="btn bg-white text-lg text-black font-bold hover:bg-gray-400 border-none" href={'/products'}>
+            PRODUK
+          </Link>
+
+          <Link className="btn bg-white text-lg text-black font-bold hover:bg-gray-400 border-none" href={'/wishlist'}>
+            KERANJANG
           </Link>
         </div>
 
@@ -33,7 +37,7 @@ export default function Navbar() {
           {token ? (
             <form action={handleLogout}>
               <button className="btn bg-white border-red-700 text-red-700 font-bold hover:bg-red-700 hover:border-red-700 hover:text-white" type="submit">
-                LOGOUT
+                KELUAR
               </button>
             </form>
           ) : null}

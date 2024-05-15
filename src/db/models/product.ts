@@ -28,7 +28,14 @@ export async function getProductsPagination(page: number) {
     .skip((page - 1) * pageSize)
     .limit(pageSize)
     .toArray()) as Product[];
-  return products;
+
+  const totalProducts = (await db.collection('products').countDocuments()) as number;
+  const totalPage = Math.ceil(totalProducts / pageSize);
+
+  return {
+    totalPage,
+    data: products,
+  };
 }
 
 //  search product

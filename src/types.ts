@@ -37,6 +37,23 @@ export interface FetchDataType {
   data: Product[];
 }
 
+interface Pagination {
+  totalPage: number;
+  data: Product[];
+}
+
+export interface FetchDataProducts {
+  statusCode: number;
+  message: string;
+  data: Pagination;
+}
+
+export interface FetchDataProduct {
+  statusCode: number;
+  message: string;
+  data: Product;
+}
+
 export interface FetchDataTypeWishlist {
   statusCode: number;
   message: string;
