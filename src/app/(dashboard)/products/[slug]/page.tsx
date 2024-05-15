@@ -4,9 +4,20 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { FetchDataProduct, Product } from '@/types';
+import { ObjectId } from 'mongodb';
 
 export default function DetailProduct({ params: { slug } }: { params: { slug: string } }) {
-  const [product, setProduct] = useState<Product>({});
+  const [product, setProduct] = useState<Product>({
+    _id: new ObjectId(),
+    name: '',
+    slug: '',
+    description: '',
+    excerpt: '',
+    price: 0,
+    tags: [],
+    thumbnail: '',
+    images: [],
+  });
 
   async function getProductById() {
     const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/products/' + slug, {
