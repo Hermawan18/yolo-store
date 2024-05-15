@@ -18,7 +18,7 @@ export default function FormRegister() {
     const email = formData.get('email');
     const password = formData.get('password');
 
-    const response = await fetch('http://localhost:3000/api/users/register', {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/users/register', {
       method: 'POST',
       body: JSON.stringify({ name, username, email, password }),
       headers: {

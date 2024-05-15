@@ -9,7 +9,7 @@ export default function DetailProduct({ params: { slug } }: { params: { slug: st
   const [product, setProduct] = useState<Product>({});
 
   async function getProductById() {
-    const response = await fetch('http://localhost:3000/api/products/' + slug, {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/products/' + slug, {
       method: 'GET',
       headers: {
         cookie: document.cookie,

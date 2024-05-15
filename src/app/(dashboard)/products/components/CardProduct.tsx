@@ -10,7 +10,7 @@ export default function CardProduct({ product }: { product: Product }) {
   const id = product._id.toString();
 
   const handleAddWishlist = async (product: Product) => {
-    const response = await fetch('http://localhost:3000/api/wishlist', {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/wishlist', {
       method: 'POST',
       cache: 'no-store',
       headers: {

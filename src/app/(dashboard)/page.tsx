@@ -9,7 +9,7 @@ export default function Home() {
   const [items, setItems] = useState<Product[]>([]);
 
   const resultPagination = async () => {
-    const response = await fetch(`http://localhost:3000/api/products/pagination`, {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + `/api/products/pagination`, {
       method: 'POST',
       headers: {
         cookie: document.cookie,

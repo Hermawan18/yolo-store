@@ -18,7 +18,7 @@ export default function Products() {
 
     const formData = new FormData(e.currentTarget);
     const search = formData.get('search');
-    const response = await fetch('http://localhost:3000/api/products', {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/products', {
       method: 'POST',
       headers: {
         cookie: document.cookie,
@@ -46,7 +46,7 @@ export default function Products() {
     data: Pagination;
   }
   const resultPagination = async () => {
-    const response = await fetch(`http://localhost:3000/api/products/pagination`, {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + `/api/products/pagination`, {
       method: 'POST',
       headers: {
         cookie: document.cookie,

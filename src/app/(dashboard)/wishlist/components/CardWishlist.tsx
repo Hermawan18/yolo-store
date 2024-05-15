@@ -7,7 +7,7 @@ type HandleFetchWishlist = () => void;
 export default function CardWishlist({ wishlist, fetchWishlist, productWishlist }: { wishlist: Wishlist; fetchWishlist: HandleFetchWishlist; productWishlist: Wishlist[] }) {
   const navigation = useRouter();
   async function DeleteWishlist(wishlistId: string) {
-    const response = await fetch('http://localhost:3000/api/wishlist', {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/wishlist', {
       method: 'DELETE',
       headers: {
         cookie: document.cookie,

@@ -12,7 +12,7 @@ export function ListWishlist() {
   let totalPrice: number = 0;
 
   async function fetchWishlist() {
-    const response = await fetch('http://localhost:3000/api/wishlist', {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/wishlist', {
       method: 'GET',
       headers: {
         cookie: document.cookie,
@@ -30,7 +30,7 @@ export function ListWishlist() {
   }, []);
 
   async function DeleteWishlist(wishlistId: string) {
-    const response = await fetch('http://localhost:3000/api/wishlist', {
+    const response = await fetch(process.env.NEXT_PUBLIC_BASE_URL + '/api/wishlist', {
       method: 'DELETE',
       headers: {
         cookie: document.cookie,
